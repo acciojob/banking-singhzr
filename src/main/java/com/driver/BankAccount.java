@@ -7,7 +7,7 @@ public class BankAccount {
     }
 
     private String name;
-    public double balance;
+    private double balance;
     private double minBalance;
 
     public BankAccount(String name, double balance, double minBalance) {
@@ -60,7 +60,7 @@ public class BankAccount {
         if (this.balance - amount < minBalance) {
             throw new Exception("Insufficient Balance");
         }
-        this.balance = amount;
+        this.balance -= amount;
     }
 
     public  String accountNumber(int digits, int sum) throws Exception {
