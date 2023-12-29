@@ -48,7 +48,7 @@ public class CurrentAccount extends BankAccount{
             }
         }
         catch (Exception e){
-
+            throw new Exception("Valid License can not be generated");
         }
     }
 }
