@@ -48,12 +48,8 @@ public class BankAccount {
 
     public void withdraw(double amount) throws Exception {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
-        try {
-            double newBalance = balance - amount;
-            if (newBalance < minBalance) {
-
-            }
-        } catch (Exception e) {
+        double newBalance = balance - amount;
+        if (newBalance < minBalance) {
             throw new Exception("Insufficient Balance");
         }
     }
