@@ -10,7 +10,7 @@ public class SavingsAccount extends BankAccount{
     }
 
     public SavingsAccount(String name, double balance, double maxWithdrawalLimit, double rate) {
-        super(name, balance);
+        super(name, 0);
         this.maxWithdrawalLimit = maxWithdrawalLimit;
         this.rate = rate;
 
@@ -30,6 +30,7 @@ public class SavingsAccount extends BankAccount{
 
     }
     public double getRate() {
+
         return rate;
     }
 
