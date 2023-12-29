@@ -75,6 +75,6 @@ public class CurrentAccount extends BankAccount{
             current[1]--;
             prev = current;
         }
-        return s;
+        return res.toString();
     }
 }
