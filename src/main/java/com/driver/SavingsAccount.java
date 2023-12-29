@@ -4,9 +4,6 @@ public class SavingsAccount extends BankAccount{
     double rate;
     double maxWithdrawalLimit;
 
-    public double getRate() {
-        return rate;
-    }
 
     public double getMaxWithdrawalLimit() {
         return maxWithdrawalLimit;
@@ -14,7 +11,6 @@ public class SavingsAccount extends BankAccount{
 
     public SavingsAccount(String name, double balance, double maxWithdrawalLimit, double rate) {
         super(name, balance);
-
         this.maxWithdrawalLimit = maxWithdrawalLimit;
         this.rate = rate;
 
@@ -32,6 +28,9 @@ public class SavingsAccount extends BankAccount{
             maxWithdrawalLimit--;
         }
 
+    }
+    public double getRate() {
+        return rate;
     }
 
     public double getSimpleInterest(int years){

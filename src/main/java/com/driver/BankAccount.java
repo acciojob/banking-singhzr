@@ -22,10 +22,6 @@ public class BankAccount {
         return balance;
     }
 
-    public double getMinBalance() {
-        return minBalance;
-    }
-
     public String getName() {
         return name;
     }

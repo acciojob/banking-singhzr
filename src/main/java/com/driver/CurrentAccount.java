@@ -1,50 +1,38 @@
 package com.driver;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+public class CurrentAccount extends BankAccount {
+    private String tradeLicenseId;
 
-public class CurrentAccount extends BankAccount{
-    String tradeLicenseId; //consists of Uppercase English characters only
+    private static final double DEFAULT_MIN_BALANCE = 5000;
 
-    public String getTradeLicenseId() {
-        return tradeLicenseId;
-    }
-
-    public CurrentAccount(String name, double balance, String tradeLicenseId) throws Exception {
-        // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
-        super(name, balance);
+    public CurrentAccount(String name, String tradeLicenseId) {
+        super(name, DEFAULT_MIN_BALANCE);
         this.tradeLicenseId = tradeLicenseId;
     }
 
     public void validateLicenseId() throws Exception {
-
-        Map<Character, Integer> hm = new HashMap<>();
-        for (char c : tradeLicenseId.toCharArray()) {
-            hm.put(c, hm.getOrDefault(c, 0) + 1);
-        }
-
-        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> b[1] - a[1]);
-        for (char key : hm.keySet()) {
-
-            maxHeap.offer(new int[]{key, hm.get(key)});
-        }
-
-        StringBuilder res = new StringBuilder();
-        int[] prev = new int[]{'*', 0};
-
-        while (!maxHeap.isEmpty()) {
-            int[] current = maxHeap.poll();
-            res.append((char) current[0]);
-            if (prev[1] > 0) {
-                maxHeap.offer(prev);
+        char[] licenseChars = tradeLicenseId.toCharArray();
+        for (int i = 0; i < licenseChars.length - 1; i++) {
+            if (licenseChars[i] == licenseChars[i + 1]) {
+                // Rearrange the characters to create a valid license Id
+                rearrangeLicenseId();
+                return;
             }
+        }
+        // License Id is already valid
+    }
 
-            current[1]--;
-            prev = current;
+    private void rearrangeLicenseId() throws Exception {
+        char[] licenseChars = tradeLicenseId.toCharArray();
+        for (int i = 0; i < licenseChars.length - 1; i++) {
+            if (licenseChars[i] == licenseChars[i + 1]) {
+                // Swap adjacent characters
+                char temp = licenseChars[i];
+                licenseChars[i] = licenseChars[i + 1];
+                licenseChars[i + 1] = temp;
+            }
         }
-        if (res.toString() != tradeLicenseId) {
-            throw new Exception("Valid License can not be generated");
-        }
+        tradeLicenseId = new String(licenseChars);
+        validateLicenseId(); // Recursively validate the rearranged license Id
     }
 }
