@@ -29,20 +29,25 @@ public class CurrentAccount extends BankAccount{
         // If the license Id is valid, do nothing
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
-        if(!isValid(this.tradeLicenseId)) {
-            String ans = orgString(this.tradeLicenseId);
-            if(ans.length()==0) {
+        if(!isValid(this.tradeLicenseId))
+        {
+            String ans=orgString(this.tradeLicenseId);
+            if(ans.length()==0)
+            {
                 throw new Exception("Valid License can not be generated");
             }
-            else {
-                this.tradeLicenseId = ans;
+            else
+            {
+                this.tradeLicenseId=ans;
             }
         }
     }
 
     private boolean isValid(String s) {
-        for(int i = 1;i < s.length(); i++) {
-            if(s.charAt(i-1) == s.charAt(i)) {
+        for(int i=1;i<s.length();i++)
+        {
+            if(s.charAt(i-1)==s.charAt(i))
+            {
                 return false;
             }
         }
@@ -74,6 +79,9 @@ public class CurrentAccount extends BankAccount{
 
             current[1]--;
             prev = current;
+        }
+        if(res.length() != s.length()){
+            return "";
         }
         return res.toString();
     }
