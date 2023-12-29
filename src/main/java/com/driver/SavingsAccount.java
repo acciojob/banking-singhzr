@@ -5,6 +5,14 @@ public class SavingsAccount extends BankAccount{
     double maxWithdrawalLimit;
     int withdrawTimes = 0;
 
+    public double getRate() {
+        return rate;
+    }
+
+    public double getMaxWithdrawalLimit() {
+        return maxWithdrawalLimit;
+    }
+
     public SavingsAccount(String name, double balance, double maxWithdrawalLimit, double rate) {
         super(name, balance);
 
