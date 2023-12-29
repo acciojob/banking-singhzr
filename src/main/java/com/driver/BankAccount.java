@@ -2,6 +2,10 @@ package com.driver;
 
 public class BankAccount {
 
+    public double getMinBalance() {
+        return minBalance;
+    }
+
     private String name;
     private double balance;
     private double minBalance;
