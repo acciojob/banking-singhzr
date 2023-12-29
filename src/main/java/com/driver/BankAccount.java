@@ -8,24 +8,64 @@ public class BankAccount {
 
     public BankAccount(String name, double balance, double minBalance) {
 
+        this.name = name;
+        this.balance = balance;
+        this.minBalance = minBalance;
     }
 
-    public String generateAccountNumber(int digits, int sum) throws Exception{
-        //Each digit of an account number can lie between 0 and 9 (both inclusive)
-        //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
-        //If it is not possible, throw "Account Number can not be generated" exception
+    public BankAccount(String name, double balance){
+        this.name = name;
+        this.balance = balance;
+    }
 
-        return null;
+    public double getBalance() {
+        return balance;
+    }
+
+    public String generateAccountNumber(int digits, int sum) throws Exception {
+
+        String account = accountNumber(digits, sum);
+
+        return account;
     }
 
     public void deposit(double amount) {
-        //add amount to balance
+        balance += amount;
 
     }
 
     public void withdraw(double amount) throws Exception {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
+        try {
+            double newBalance = balance - amount;
+            if (newBalance < minBalance) {
 
+            }
+        } catch (Exception e) {
+            throw new Exception("Insufficient Balance");
+        }
     }
 
+    public  String accountNumber(int digits, int sum) throws Exception {
+        if (digits <= 0 || sum < 0 || sum > digits * 9) {
+            throw new Exception("Account Number can not be generated");
+        }
+
+        StringBuilder accountNumber = new StringBuilder();
+
+        for (int i = 0; i < digits - 1; i++) {
+            int digit = Math.min(9, sum);
+            accountNumber.append(digit);
+            sum -= digit;
+        }
+
+        if (sum >= 0 && sum <= 9) {
+            accountNumber.append(sum);
+        }
+        else {
+            return null;
+        }
+
+        return accountNumber.toString();
+    }
 }
